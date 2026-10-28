@@ -1,0 +1,28 @@
+OpenLDAC for Windows 中文版 (zh-CN)
+Copyright 2026 OpenLDAC 中文版汉化作者
+
+本产品是 OpenLDAC for Windows 的修改版本（衍生作品），
+原始作品版权归 Shubham Kumar Jha 及 OpenLDAC-Windows 项目贡献者所有：
+https://github.com/shubhamkjha369/OpenLDAC-Windows
+
+原始作品基于 Apache License 2.0 发布。
+
+依据 Apache License 2.0 第 4 条（Redistribution）声明本版本的修改内容：
+
+  1. 汉化 src/gui/main_window.py 的全部界面文案，并统一界面字体族为
+     Microsoft YaHei UI。
+  2. 汉化 src/app.py、src/audio/wasapi_capture.py、src/bluetooth/device_manager.py、
+     src/bluetooth/hfp_guard.py、src/codec/ldac_encoder.py 中的日志与异常文案。
+  3. 修改 run.py：加入 Per-Monitor DPI 感知设置，并改为延迟导入，确保 DPI
+     设置早于 Tk 窗口创建。
+  4. 调整 src/gui/main_window.py 的窗口尺寸、边距与日志框高度，修复高 DPI
+     缩放下的布局裁切问题。
+  5. 将部分彩色 emoji 图标替换为单色符号，以兼容中文界面字体族。
+  6. 修改 installer/ 下的构建与安装脚本，产物名称与安装目录改为 zh-CN 命名。
+
+未修改的内容：LDAC 编码逻辑、AVDTP/RTP 封包、WASAPI 采集、HFP 保护状态机、
+设备发现与配置持久化等所有功能性代码。
+
+本修改版本同样以 Apache License 2.0 发布，许可证全文见 LICENSE。
+
+Sony 与 LDAC 是索尼公司的商标。

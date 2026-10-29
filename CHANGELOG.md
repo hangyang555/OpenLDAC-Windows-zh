@@ -1,3 +1,12 @@
+## [文档更正] — 2026-10-30
+
+* README 顶部新增「技术现状」一节，明确上游 v1.0.0 的音频链路只实现了一半：
+  * LDAC 编码器为占位实现（`src/codec/ldac_encoder.py:182` 自注 “MDCT equivalent simulation”，无 MDCT / 比特分配 / 哈夫曼）；
+  * 不存在往蓝牙设备发送的调用（`src/app.py:163` 丢弃 `packetize_frames(...)` 返回值，`src/` 无 `socket` / `BTPROTO` / `.send(`）；
+  * HFP 通话保护只检测端点并写日志，`_inhibit_endpoint()` 未真正禁用端点。
+* 相应修正 README 中「位完美」「索尼 LDAC 编码支持」「未改动任何音频链路逻辑」等表述，并把徽章 `Codec` 改为 `upstream placeholder`。
+* 修正「方式 1」中的 zip 名称（1.0.0 → 1.0.1），补充说明自动化测试只校验数据结构外形。
+* 仓库简介同步修正；两个 release 正文顶部加同样的能力边界补记；上游 issue #1 已补充说明并关闭。
 # 更新日志 / Changelog
 
 本项目的版本号在遵循上游（[OpenLDAC-Windows](https://github.com/shubhamkjha369/OpenLDAC-Windows)）版本号的前提下，

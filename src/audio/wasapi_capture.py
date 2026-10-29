@@ -94,6 +94,8 @@ class IAudioClient(IUnknown):
 class IAudioCaptureClient(IUnknown):
     _iid_ = IID_IAudioCaptureClient
     _methods_ = [
+        # comtypes 会把纯 out 参数从调用签名里剔除，调用时不能传 byref(...)，
+        # 而是由 comtypes 分配并把这些值作为返回值元组交出：pData, nFrames, flags, pos, qpc。
         COMMETHOD([], HRESULT, 'GetBuffer',
                   (['out'], POINTER(POINTER(c_byte)), 'ppData'),
                   (['out'], POINTER(wintypes.DWORD), 'pNumFramesToRead'),
@@ -191,21 +193,11 @@ class WasapiLoopbackCapture:
                 
                 packet_size = capture_client.GetNextPacketSize()
                 while packet_size > 0:
-                    pData = POINTER(c_byte)()
-                    frames_read = wintypes.DWORD()
-                    flags = wintypes.DWORD()
-                    device_pos = c_int64()
-                    qpc_pos = c_int64()
+                    # comtypes 把 GetBuffer 的 5 个 out 参数作为返回值给出，
+                    # 传入 byref(...) 会直接抛 “call takes exactly 1 arguments (6 given)”。
+                    pData, frames_read, flags, device_pos, qpc_pos = capture_client.GetBuffer()
 
-                    capture_client.GetBuffer(
-                        byref(pData),
-                        byref(frames_read),
-                        byref(flags),
-                        byref(device_pos),
-                        byref(qpc_pos)
-                    )
-
-                    n_frames = frames_read.value
+                    n_frames = int(frames_read)
                     if n_frames > 0:
                         total_bytes = n_frames * frame_size
                         # Copy buffer

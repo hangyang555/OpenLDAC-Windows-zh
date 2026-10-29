@@ -1,7 +1,7 @@
 """生成 OpenLDAC 中文版（zh-CN）带图标的自包含 Windows 安装包。
 
 产物（dist/installer/）：
-  * OpenLDAC-zh-CN-v1.0.0-win-x64.zip  —— 完整目录版 + 一键安装脚本（便携 zip 发布包）
+  * OpenLDAC-zh-CN-v1.0.1-win-x64.zip  —— 完整目录版 + 一键安装脚本（便携 zip 发布包）
   * Install_OpenLDAC_zh-CN.ps1 / .bat  —— 安装脚本（同时被打进 zip）
 """
 
@@ -11,7 +11,7 @@ import zipfile
 from pathlib import Path
 
 APP_NAME = "OpenLDAC-zh-CN"
-VERSION = "1.0.0"
+VERSION = "1.0.1"
 ZIP_NAME = f"{APP_NAME}-v{VERSION}-win-x64.zip"
 INSTALL_DIR_REL = r"%LOCALAPPDATA%\Programs\OpenLDAC-zh-CN"
 SHORTCUT_NAME = "OpenLDAC 中文版"
@@ -42,7 +42,7 @@ def create_installer():
     setup_ps1.write_text(r"""# OpenLDAC 中文版 —— Windows 安装脚本
 $ErrorActionPreference = "Stop"
 Write-Host "==============================================" -ForegroundColor Cyan
-Write-Host "   OpenLDAC 中文版 安装程序  v1.0.0-zh-CN      " -ForegroundColor Cyan
+Write-Host "   OpenLDAC 中文版 安装程序  v1.0.1-zh-CN      " -ForegroundColor Cyan
 Write-Host "==============================================" -ForegroundColor Cyan
 
 $InstallDir = Join-Path $env:LOCALAPPDATA "Programs\OpenLDAC-zh-CN"
@@ -111,7 +111,7 @@ pause
     # 3. zip 内附带的使用说明
     readme_txt = output_dir / "使用说明.txt"
     readme_txt.write_text(
-        "OpenLDAC 中文版 v1.0.0-zh-CN\r\n"
+        "OpenLDAC 中文版 v1.0.1-zh-CN\r\n"
         "=================================\r\n\r\n"
         "【免安装使用】\r\n"
         "  直接双击 OpenLDAC-zh-CN\\OpenLDAC-zh-CN.exe 即可运行。\r\n\r\n"

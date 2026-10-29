@@ -267,7 +267,7 @@ class MainWindow(ctk.CTk):
         # 4. 页脚
         self.footer_label = ctk.CTkLabel(
             self,
-            text="OpenLDAC v1.0.0-zh-CN — 开源（Apache-2.0）— 无付费墙、无到期限制，纯用户态 WASAPI 架构",
+            text="OpenLDAC v1.0.1-zh-CN — 开源（Apache-2.0）— 无付费墙、无到期限制，纯用户态 WASAPI 架构",
             font=ui_font(11),
             text_color="#6b7280"
         )
